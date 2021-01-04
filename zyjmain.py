@@ -4,14 +4,17 @@
 import sys
 from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtCore import QThread, QProcess, QMutex
+from PyQt5.QtCore import QThread, QProcess
 import demo
+import os
+import signal
 
 
 pitch = 0.0
 roll = 0.0
 yaw = 0.0
 thrust = 0.3
+servicepid = 0
 
 
 class Thread_launch(QThread):  # thread for launch controll node
@@ -19,17 +22,26 @@ class Thread_launch(QThread):  # thread for launch controll node
         super(Thread_launch, self).__init__()
 
     def run(self):
+        global servicepid
         self.plaunch = QProcess()
-        self.plaunch.execute("roscore")
+        self.plaunch.execute("roscore&")
         self.plaunch.waitForFinished()
-
-    #  ef __del__(self):
 
 
 def click_launch():
     ui.pushButton_launch.setEnabled(False)
+    ui.pushButton_stop.setEnabled(True)
     ui.thread_launch = Thread_launch()
     ui.thread_launch.start()
+
+
+def click_stop():
+    pstop = QProcess()
+    pstop.execute("killall -9 roscore")
+    pstop.waitForFinished()
+    pstop.execute("killall -9 rosmaster")
+    pstop.waitForFinished()
+    ui.pushButton_launch.setEnabled(True)
 
 
 def click_unlock():
@@ -101,7 +113,9 @@ if __name__ == '__main__':
     MainWindow.show()
     #  set push buttons
     ui.pushButton_launch.clicked.connect(click_launch)
-    ui.pushButton_launch.setEnabled(False)
+    ui.pushButton_launch.setEnabled(True)
+    ui.pushButton_stop.clicked.connect(click_stop)
+    ui.pushButton_stop.setEnabled(False)
     ui.pushButton_unlock.clicked.connect(click_unlock)
     ui.pushButton_lock.clicked.connect(click_lock)
     ui.pushButton_set.clicked.connect(click_set)
