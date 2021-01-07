@@ -2,6 +2,7 @@
 # !/usr/bin/env python
 
 import sys
+import os
 #  from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QThread, QProcess
@@ -24,8 +25,8 @@ class Thread_controll(QThread):  # thread for controll node
 
     def run(self):
         self.pcontroll = QProcess()
-        # self.plaunch.execute("roslaunch", ["clever", "clever.launch"])
-        self.pid = self.pcontroll.execute("roscore")
+        self.plaunch.execute("roslaunch", ["clever", "clever.launch"])
+        # self.pid = self.pcontroll.execute("roscore")
         print(self.pid)
         self.pcontroll.waitForFinished()
 
@@ -125,9 +126,11 @@ def click_face():
 
 
 def click_stopface():
-    pstopcamera = QProcess()
-    pstopcamera.execute("rosnode", ["kill", "ros_vision_demo"])
-    pstopcamera.waitForFinished()
+    # pstopcamera = QProcess()
+    # pstopcamera.execute("rosnode", ["kill", "ros_vision_demo"])
+    # pstopcamera.execute("rosnode", ["kill", "$(rosnode list)", "|", "grep", "face"])
+    # pstopcamera.waitForFinished()
+    os.system("rosnode kill $(rosnode list) | grep face")
     ui.pushButton_camera.setEnabled(True)
 
 
@@ -226,7 +229,7 @@ if __name__ == '__main__':
     ui.pushButton_set.clicked.connect(click_set)
     ui.pushButton_face.clicked.connect(click_face)
     ui.pushButton_camera.clicked.connect(click_camera)
-    ui.pushButton_stopcamera.setEnabled(False)
+    ui.pushButton_stopcamera.setEnabled(True)
     ui.pushButton_stopcamera.clicked.connect(click_stopcamera)
     ui.pushButton_stopface.clicked.connect(click_stopface)
     # #  set lineEdits
