@@ -20,17 +20,10 @@
       <x>610</x>
       <y>10</y>
       <width>161</width>
-      <height>194</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButton_controll">
-       <property name="text">
-        <string>launch controll node</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="pushButton_camera">
        <property name="text">
@@ -53,16 +46,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_stopcontroll">
+      <widget class="QPushButton" name="pushButton_set">
        <property name="text">
-        <string>stop controll node</string>
+        <string>boot</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_stopcamera">
+      <widget class="QPushButton" name="pushButton_stopcontroll">
        <property name="text">
-        <string>stop camera node</string>
+        <string>stop controll node</string>
        </property>
       </widget>
      </item>
@@ -85,16 +78,16 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>220</y>
+      <y>250</y>
       <width>121</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>manual controll</string>
+     <string>mannual controll</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QLabel" name="label_display_image">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -114,9 +107,9 @@
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>260</y>
+      <y>280</y>
       <width>161</width>
-      <height>201</height>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -188,13 +181,6 @@
       <widget class="QScrollBar" name="Scrollbar_thrust">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_set">
-       <property name="text">
-        <string>boot</string>
        </property>
       </widget>
      </item>

@@ -1,0 +1,9 @@
+^C[simple_offboard-7] killing on exit
+[map_flipped_frame-6] killing on exit
+[mavros-2] killing on exit
+[visualization-4] killing on exit
+[nodelet_manager-5] killing on exit
+[rangefinder_frame-3] killing on exit
+[rosout-1] killing on exit
+[master] killing on exit
+
